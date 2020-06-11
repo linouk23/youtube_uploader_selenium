@@ -1,0 +1,1 @@
+selenium_firefox==0.2.7

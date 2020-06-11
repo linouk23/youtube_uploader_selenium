@@ -34,19 +34,25 @@ An example JSON file would be:
 ```json
 {
   "title": "Best Of James Harden | 2019-20 NBA Season",
-  "description": "Check out the best of James Harden's 2019-20 season so far!",
-  "tags": ["nba", "rockets", "harden"],
+  "description": "Check out the best of James Harden's 2019-20 season so far!"
 }
 ```
+
+## Dependencies
+* geckodriver
+* Firefox
+* selenium_firefox
+
+## FAQ
+* [Selenium using Python - Geckodriver executable needs to be in PATH](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path)
+* [SessionNotCreatedException: Message: Unable to find a matching set of capabilities](https://stackoverflow.com/questions/47782650/selenium-common-exceptions-sessionnotcreatedexception-message-unable-to-find-a)
+   * Please make sure that Firefox browser is installed on your machine.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Feedback
 If you find a bug / want a new feature to be added, please [open an issue](https://github.com/tokland/youtube-upload/issues).
-
-## FAQ
-TODO: add popular questions
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
