@@ -8,14 +8,33 @@ which is the maximum [[1]](https://github.com/tokland/youtube-upload/issues/268)
 Instead, this script is only restricted by a daily upload limit for a channel on YouTube:
 > 100 videos is the limit in the first 24 hours, then drops to 50 every 24 hours after that. [[4]](https://support.google.com/youtube/thread/1187675?hl=en)
 
-## Installation
+## Package Installation
+```bash
+pip install --upgrade youtube-uploader-selenium
+# or
+pip3 install --upgrade youtube-uploader-selenium
+```
+
+## Script Installation
 
 ```bash
 git clone https://github.com/linouk23/youtube-uploader-selenium
 cd youtube-uploader-selenium
 ```
 
-## Usage
+## Package Usage
+```python
+from youtube_uploader_selenium import YouTubeUploader
+
+video_path = '123/rockets.flv'
+metadata_path = '123/rockets_metadata.json'
+
+uploader = YouTubeUploader(video_path, metadata_path)
+was_video_uploaded, video_id = uploader.upload()
+assert was_video_uploaded
+```
+
+## Script Usage
 At a minimum, just specify a video:
 
 ```bash
