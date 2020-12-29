@@ -73,7 +73,7 @@ class YouTubeUploader:
         absolute_video_path = str(Path.cwd() / self.video_path)
         self.browser.find(By.XPATH, Constant.INPUT_FILE_VIDEO).send_keys(absolute_video_path)
         self.logger.debug('Attached video {}'.format(self.video_path))
-        title_field = self.browser.find(By.ID, Constant.TEXTBOX)
+        title_field = self.browser.find(By.ID, Constant.TEXTBOX, timeout=10)
         title_field.click()
         time.sleep(Constant.USER_WAITING_TIME)
         title_field.clear()
