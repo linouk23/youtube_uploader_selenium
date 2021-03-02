@@ -24,8 +24,9 @@ class YouTubeUploader:
     """A class for uploading videos on YouTube via Selenium using metadata JSON file
     to extract its title, description etc"""
 
-    def __init__(self, video_path: str, metadata_json_path: Optional[str] = None) -> None:
+    def __init__(self, video_path: str, metadata_json_path: Optional[str] = None, thumbnail_path: Optional[str] = None) -> None:
         self.video_path = video_path
+        self.thumbnail_path = thumbnail_path
         self.metadata_dict = load_metadata(metadata_json_path)
         current_working_dir = str(Path.cwd())
         self.browser = Firefox(current_working_dir, current_working_dir)
@@ -73,6 +74,13 @@ class YouTubeUploader:
         absolute_video_path = str(Path.cwd() / self.video_path)
         self.browser.find(By.XPATH, Constant.INPUT_FILE_VIDEO).send_keys(absolute_video_path)
         self.logger.debug('Attached video {}'.format(self.video_path))
+
+        absolute_thumbnail_path = str(Path.cwd() / self.thumbnail_path)
+        self.browser.find(By.XPATH, Constant.INPUT_FILE_THUMBNAIL).send_keys(absolute_thumbnail_path)
+        change_display = "document.getElementById('file-loader').style = 'display: block! important'"
+        self.browser.driver.execute_script(change_display)
+        self.logger.debug('Attached thumbnail {}'.format(self.thumbnail_path))
+
         title_field = self.browser.find(By.ID, Constant.TEXTBOX, timeout=10)
         title_field.click()
         time.sleep(Constant.USER_WAITING_TIME)

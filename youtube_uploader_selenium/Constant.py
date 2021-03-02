@@ -26,3 +26,4 @@ class Constant:
     VIDEO_NOT_FOUND_ERROR = 'Could not find video_id'
     DONE_BUTTON = 'done-button'
     INPUT_FILE_VIDEO = "//input[@type='file']"
+    INPUT_FILE_THUMBNAIL = "//input[@id='file-loader']"
