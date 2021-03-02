@@ -66,6 +66,16 @@ class YouTubeUploader:
             time.sleep(Constant.USER_WAITING_TIME)
             self.browser.save_cookies()
 
+    def __write_in_field(self, field, string, select_all=False):
+        field.click()
+        time.sleep(Constant.USER_WAITING_TIME)
+        field.clear()
+        time.sleep(Constant.USER_WAITING_TIME)
+        if select_all:
+            field.send_keys(Keys.COMMAND + 'a')
+            time.sleep(Constant.USER_WAITING_TIME)
+        field.send_keys(string)
+
     def __upload(self) -> (bool, Optional[str]):
         self.browser.get(Constant.YOUTUBE_URL)
         time.sleep(Constant.USER_WAITING_TIME)
@@ -82,13 +92,7 @@ class YouTubeUploader:
         self.logger.debug('Attached thumbnail {}'.format(self.thumbnail_path))
 
         title_field = self.browser.find(By.ID, Constant.TEXTBOX, timeout=10)
-        title_field.click()
-        time.sleep(Constant.USER_WAITING_TIME)
-        title_field.clear()
-        time.sleep(Constant.USER_WAITING_TIME)
-        title_field.send_keys(Keys.COMMAND + 'a')
-        time.sleep(Constant.USER_WAITING_TIME)
-        title_field.send_keys(self.metadata_dict[Constant.VIDEO_TITLE])
+        self.__write_in_field(title_field, self.metadata_dict[Constant.VIDEO_TITLE], select_all=True)
         self.logger.debug('The video title was set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TITLE]))
 
         video_description = self.metadata_dict[Constant.VIDEO_DESCRIPTION]
@@ -96,11 +100,7 @@ class YouTubeUploader:
             description_container = self.browser.find(By.XPATH,
                                                       Constant.DESCRIPTION_CONTAINER)
             description_field = self.browser.find(By.ID, Constant.TEXTBOX, element=description_container)
-            description_field.click()
-            time.sleep(Constant.USER_WAITING_TIME)
-            description_field.clear()
-            time.sleep(Constant.USER_WAITING_TIME)
-            description_field.send_keys(self.metadata_dict[Constant.VIDEO_DESCRIPTION])
+            self.__write_in_field(description_field, self.metadata_dict[Constant.VIDEO_DESCRIPTION])
             self.logger.debug(
                 'The video description was set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_DESCRIPTION]))
 
