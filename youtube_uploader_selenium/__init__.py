@@ -85,11 +85,12 @@ class YouTubeUploader:
         self.browser.find(By.XPATH, Constant.INPUT_FILE_VIDEO).send_keys(absolute_video_path)
         self.logger.debug('Attached video {}'.format(self.video_path))
 
-        absolute_thumbnail_path = str(Path.cwd() / self.thumbnail_path)
-        self.browser.find(By.XPATH, Constant.INPUT_FILE_THUMBNAIL).send_keys(absolute_thumbnail_path)
-        change_display = "document.getElementById('file-loader').style = 'display: block! important'"
-        self.browser.driver.execute_script(change_display)
-        self.logger.debug('Attached thumbnail {}'.format(self.thumbnail_path))
+        if self.thumbnail_path is not None:
+            absolute_thumbnail_path = str(Path.cwd() / self.thumbnail_path)
+            self.browser.find(By.XPATH, Constant.INPUT_FILE_THUMBNAIL).send_keys(absolute_thumbnail_path)
+            change_display = "document.getElementById('file-loader').style = 'display: block! important'"
+            self.browser.driver.execute_script(change_display)
+            self.logger.debug('Attached thumbnail {}'.format(self.thumbnail_path))
 
         title_field = self.browser.find(By.ID, Constant.TEXTBOX, timeout=10)
         self.__write_in_field(title_field, self.metadata_dict[Constant.VIDEO_TITLE], select_all=True)
