@@ -69,8 +69,6 @@ class YouTubeUploader:
     def __write_in_field(self, field, string, select_all=False):
         field.click()
         time.sleep(Constant.USER_WAITING_TIME)
-        field.clear()
-        time.sleep(Constant.USER_WAITING_TIME)
         if select_all:
             field.send_keys(Keys.COMMAND + 'a')
             time.sleep(Constant.USER_WAITING_TIME)
