@@ -1,0 +1,8 @@
+README.md
+setup.py
+Youtube_Uploader_Selenium.egg-info/PKG-INFO
+Youtube_Uploader_Selenium.egg-info/SOURCES.txt
+Youtube_Uploader_Selenium.egg-info/dependency_links.txt
+Youtube_Uploader_Selenium.egg-info/top_level.txt
+youtube_uploader_selenium/Constant.py
+youtube_uploader_selenium/__init__.py

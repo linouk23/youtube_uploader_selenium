@@ -108,21 +108,26 @@ class YouTubeUploader:
         self.logger.debug('Selected \"{}\"'.format(Constant.NOT_MADE_FOR_KIDS_LABEL))
 
         # Advanced options
-        self.browser.find(By.XPATH, Constant.MORE_BUTTON).click()
-        self.logger.debug('Clicked MORE OPTIONS')
+        # self.browser.find(By.XPATH, Constant.MORE_BUTTON).click()
+        # self.logger.debug('Clicked MORE OPTIONS')
 
-        tags_container = self.browser.find(By.XPATH,
-                                                    Constant.TAGS_INPUT_CONTAINER)
-        tags_field = self.browser.find(By.ID, Constant.TAGS_INPUT, element=tags_container)
-        self.__write_in_field(tags_field, ','.join(self.metadata_dict[Constant.VIDEO_TAGS]))
-        self.logger.debug(
-            'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
+        # tags_container = self.browser.find(By.XPATH,
+        #                                             Constant.TAGS_INPUT_CONTAINER)
+        # print(tags_container)
+        # tags_field = self.browser.find(By.ID, Constant.TAGS_INPUT, element=tags_container)
+        # self.__write_in_field(tags_field, ','.join(self.metadata_dict[Constant.VIDEO_TAGS]))
+        # self.logger.debug(
+        #     'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
+        time.sleep(Constant.USER_WAITING_TIME)
 
         self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
         self.logger.debug('Clicked {}'.format(Constant.NEXT_BUTTON))
 
         self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
         self.logger.debug('Clicked another {}'.format(Constant.NEXT_BUTTON))
+
+        self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
+        self.logger.debug('Clicked final {}'.format(Constant.NEXT_BUTTON))
 
         public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
         self.browser.find(By.ID, Constant.RADIO_LABEL, public_main_button).click()
