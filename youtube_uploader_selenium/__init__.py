@@ -119,10 +119,13 @@ class YouTubeUploader:
             'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
 
         self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
-        self.logger.debug('Clicked {}'.format(Constant.NEXT_BUTTON))
+        self.logger.debug('Clicked {} one'.format(Constant.NEXT_BUTTON))
 
         self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
-        self.logger.debug('Clicked another {}'.format(Constant.NEXT_BUTTON))
+        self.logger.debug('Clicked {} two'.format(Constant.NEXT_BUTTON))
+
+        self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
+        self.logger.debug('Clicked {} three'.format(Constant.NEXT_BUTTON))
 
         public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
         self.browser.find(By.ID, Constant.RADIO_LABEL, public_main_button).click()
