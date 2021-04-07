@@ -10,8 +10,6 @@ Instead, this script is only restricted by a daily upload limit for a channel on
 
 ## Package Installation
 ```bash
-pip install --upgrade youtube-uploader-selenium
-# or
 pip3 install --upgrade youtube-uploader-selenium
 ```
 
