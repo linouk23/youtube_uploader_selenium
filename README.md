@@ -27,7 +27,7 @@ from youtube_uploader_selenium import YouTubeUploader
 video_path = '123/rockets.flv'
 metadata_path = '123/rockets_metadata.json'
 
-uploader = YouTubeUploader(video_path, metadata_path)
+uploader = YouTubeUploader(video_path, metadata_path, thumbnail_path)
 was_video_uploaded, video_id = uploader.upload()
 assert was_video_uploaded
 ```
