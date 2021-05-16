@@ -9,6 +9,7 @@ import time
 from .Constant import *
 from pathlib import Path
 import logging
+import platform
 
 logging.basicConfig()
 
@@ -33,6 +34,10 @@ class YouTubeUploader:
 		self.logger = logging.getLogger(__name__)
 		self.logger.setLevel(logging.DEBUG)
 		self.__validate_inputs()
+		
+		self.is_mac = False
+		if not any(os_name in platform.platform() for os_name in ["Windows", "Linux"]):
+			self.is_mac = True
 
 	def __validate_inputs(self):
 		if not self.metadata_dict[Constant.VIDEO_TITLE]:
@@ -74,7 +79,10 @@ class YouTubeUploader:
 		field.click()
 		time.sleep(Constant.USER_WAITING_TIME)
 		if select_all:
-			field.send_keys(Keys.COMMAND + 'a')
+			if self.is_mac:
+				field.send_keys(Keys.COMMAND + 'a')
+			else:
+				field.send_keys(Keys.CONTROL + 'a')
 			time.sleep(Constant.USER_WAITING_TIME)
 		field.send_keys(string)
 
@@ -104,13 +112,11 @@ class YouTubeUploader:
 			self.metadata_dict[Constant.VIDEO_TITLE]))
 
 		video_description = self.metadata_dict[Constant.VIDEO_DESCRIPTION]
+		video_description = video_description.replace("\n", Keys.ENTER);
 		if video_description:
-			# description_container = self.browser.find(By.XPATH, Constant.DESCRIPTION_CONTAINER)
 			description_field = self.browser.find_all(By.ID, Constant.TEXTBOX)[1]
-			# print(len(description_field))
-			# for each_t in description_field:
-			#     print(each_t)
-			# description_field = self.browser.find(By.ID, Constant.TEXTBOX, element=description_container)
+			self.__write_in_field(description_field, video_description, select_all=True)
+			self.logger.debug('Description filled.')
 
 		kids_section = self.browser.find(
 			By.NAME, Constant.NOT_MADE_FOR_KIDS_LABEL)
@@ -131,12 +137,16 @@ class YouTubeUploader:
 		self.logger.debug(
 			'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
 
-		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
-		self.logger.debug('Clicked {}'.format(Constant.NEXT_BUTTON))
 
 		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
-		self.logger.debug('Clicked another {}'.format(Constant.NEXT_BUTTON))
+		self.logger.debug('Clicked {} one'.format(Constant.NEXT_BUTTON))
 
+		# Thanks to romka777
+		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
+		self.logger.debug('Clicked {} two'.format(Constant.NEXT_BUTTON))
+
+		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
+		self.logger.debug('Clicked {} three'.format(Constant.NEXT_BUTTON))
 		public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
 		self.browser.find(By.ID, Constant.RADIO_LABEL,
 						  public_main_button).click()
