@@ -16,7 +16,7 @@ pip3 install --upgrade youtube-uploader-selenium
 ## Script Installation
 
 ```bash
-git clone https://github.com/linouk23/youtube-uploader-selenium
+git clone https://github.com/linouk23/youtube_uploader_selenium
 cd youtube-uploader-selenium
 ```
 
