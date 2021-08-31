@@ -76,7 +76,8 @@ class YouTubeUploader:
 			self.browser.save_cookies()
 
 	def __write_in_field(self, field, string, select_all=False):
-		field.click()
+		self.browser.driver.execute_script("arguments[0].click();", field)
+
 		time.sleep(Constant.USER_WAITING_TIME)
 		if select_all:
 			if self.is_mac:
