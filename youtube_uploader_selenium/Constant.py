@@ -4,9 +4,12 @@ class Constant:
     YOUTUBE_STUDIO_URL = 'https://studio.youtube.com'
     YOUTUBE_UPLOAD_URL = 'https://www.youtube.com/upload'
     USER_WAITING_TIME = 1
+    VIDEO_THUMBNAIL = 'thumbnail'
     VIDEO_TITLE = 'title'
     VIDEO_DESCRIPTION = 'description'
     VIDEO_TAGS = 'tags'
+    VIDEO_CATEGORY = 'category'
+    VIDEO_LANGUAGE = 'language'
     DESCRIPTION_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/' \
                             'ytcp-uploads-details/div/ytcp-uploads-basics/ytcp-mention-textbox[2]'
     TEXTBOX = 'textbox'
@@ -16,11 +19,15 @@ class Constant:
                        'div/div[1]/ytcp-video-upload-progress/span'
     NOT_MADE_FOR_KIDS_LABEL = 'NOT_MADE_FOR_KIDS'
 
-    # Thanks to romka777
     MORE_BUTTON = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-video-metadata-editor/div/div/ytcp-button/div'
-    TAGS_INPUT_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-video-metadata-editor/div/ytcp-video-metadata-editor-advanced/div[2]/ytcp-form-input-container/div[1]/div[2]/ytcp-free-text-chip-bar/ytcp-chip-bar/div'
+    TAGS_INPUT = '//input[@aria-label="Tags"]'
 
-    TAGS_INPUT = 'text-input'
+    LANGUAGE_DROPDOWN = '//ytcp-form-language-input[@id="language-input"]'
+    LANGUAGE_SELECTION = '//yt-formatted-string[contains(text(), "{LANGUAGE}")]'
+
+    CATEGORY_DROPDOWN = '//ytcp-form-select[@id="category"]'
+    CATEGORY_SELECTION = '//yt-formatted-string[contains(text(), "{CATEGORY}")]'
+
     NEXT_BUTTON = 'next-button'
     PUBLIC_BUTTON = 'PUBLIC'
     VIDEO_URL_CONTAINER = "//span[@class='video-url-fadeable style-scope ytcp-video-info']"
