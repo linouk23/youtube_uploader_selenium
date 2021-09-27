@@ -7,6 +7,7 @@ class Constant:
     VIDEO_TITLE = 'title'
     VIDEO_DESCRIPTION = 'description'
     VIDEO_TAGS = 'tags'
+    VIDEO_SCHEDULE = 'schedule'
     DESCRIPTION_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/' \
                             'ytcp-uploads-details/div/ytcp-uploads-basics/ytcp-mention-textbox[2]'
     TEXTBOX = 'textbox'
@@ -14,7 +15,8 @@ class Constant:
     RADIO_LABEL = 'radioLabel'
     STATUS_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[2]/' \
                        'div/div[1]/ytcp-video-upload-progress/span'
-    NOT_MADE_FOR_KIDS_LABEL = 'NOT_MADE_FOR_KIDS'
+    #NOT_MADE_FOR_KIDS_LABEL = 'NOT_MADE_FOR_KIDS'
+    NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
     # Thanks to romka777
     MORE_BUTTON = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-video-metadata-editor/div/div/ytcp-button/div'
@@ -23,6 +25,9 @@ class Constant:
     TAGS_INPUT = 'text-input'
     NEXT_BUTTON = 'next-button'
     PUBLIC_BUTTON = 'PUBLIC'
+    SCHEDULE_BUTTON = 'SCHEDULE'
+    DATEPICKER_BUTTON = 'datepicker-trigger'
+    DATEPICKER_FIELD = '//input[contains(@class,"tp-yt-paper-input")]'
     VIDEO_URL_CONTAINER = "//span[@class='video-url-fadeable style-scope ytcp-video-info']"
     VIDEO_URL_ELEMENT = "//a[@class='style-scope ytcp-video-info']"
     HREF = 'href'
