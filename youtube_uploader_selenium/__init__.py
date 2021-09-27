@@ -130,12 +130,13 @@ class YouTubeUploader:
 
 		tags_container = self.browser.find(By.XPATH,
 										   Constant.TAGS_INPUT_CONTAINER)
-		tags_field = self.browser.find(
-			By.ID, Constant.TAGS_INPUT, element=tags_container)
-		self.__write_in_field(tags_field, ','.join(
-			self.metadata_dict[Constant.VIDEO_TAGS]))
-		self.logger.debug(
-			'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
+
+		#not working for me
+		#tags_field = self.browser.find(By.ID, Constant.TAGS_INPUT, element=tags_container)		
+		#self.__write_in_field(tags_field, ','.join(self.metadata_dict[Constant.VIDEO_TAGS]))
+		#self.logger.debug('The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
+		#self.logger.info('Manually set the tags to '+",".join(self.metadata_dict[Constant.VIDEO_TAGS]))
+		
 
 
 		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
@@ -147,18 +148,34 @@ class YouTubeUploader:
 
 		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
 		self.logger.debug('Clicked {} three'.format(Constant.NEXT_BUTTON))
-		public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
-		self.browser.find(By.ID, Constant.RADIO_LABEL,
-						  public_main_button).click()
-		self.logger.debug('Made the video {}'.format(Constant.PUBLIC_BUTTON))
+
+		schedule_string = self.metadata_dict[Constant.VIDEO_SCHEDULE]
+
+		if schedule_string:
+		
+			schedule_main_button = self.browser.find(By.NAME, Constant.SCHEDULE_BUTTON)
+			self.browser.find(By.ID, Constant.RADIO_LABEL,schedule_main_button).click()
+
+			calendar_button = self.browser.find(By.ID,Constant.DATEPICKER_BUTTON).click()
+			
+			calendar_field = self.browser.find(By.XPATH,Constant.DATEPICKER_FIELD)
+			self.__write_in_field(calendar_field,schedule_string,select_all=True)
+			calendar_field.send_keys(Keys.RETURN)
+
+		else:
+			public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
+			self.browser.find(By.ID, Constant.RADIO_LABEL,public_main_button).click()			
+		
+		
+		self.logger.debug('Made the video {}'.format(Constant.SCHEDULE_BUTTON))
 
 		video_id = self.__get_video_id()
 
 		status_container = self.browser.find(By.XPATH,
 											 Constant.STATUS_CONTAINER)
 		while True:
-			in_process = status_container.text.find(Constant.UPLOADED) != -1
-			if in_process:
+			in_process = status_container.text.find(Constant.UPLOADED) != -1			
+			if in_process:				
 				time.sleep(Constant.USER_WAITING_TIME)
 			else:
 				break
@@ -174,6 +191,7 @@ class YouTubeUploader:
 			return False, None
 
 		done_button.click()
+		#self.browser.execute_script("arguments[0].click();", done_button)
 		self.logger.debug(
 			"Published the video with video_id = {}".format(video_id))
 		time.sleep(Constant.USER_WAITING_TIME)
