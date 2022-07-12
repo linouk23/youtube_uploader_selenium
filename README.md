@@ -16,7 +16,7 @@ pip3 install --upgrade youtube-uploader-selenium
 ## Script Installation
 
 ```bash
-git clone https://github.com/linouk23/youtube-uploader-selenium
+git clone https://github.com/linouk23/youtube_uploader_selenium
 cd youtube-uploader-selenium
 ```
 
@@ -51,13 +51,14 @@ An example JSON file would be:
 ```json
 {
   "title": "Best Of James Harden | 2019-20 NBA Season",
-  "description": "Check out the best of James Harden's 2019-20 season so far!"
+  "description": "Check out the best of James Harden's 2019-20 season so far!",
+  "tags": ["James", "Harden", "NBA"]
 }
 ```
 
 ## Dependencies
 * geckodriver
-* Firefox
+* Firefox **[(Works with version 77)](https://ftp.mozilla.org/pub/firefox/releases/)**
 * selenium_firefox
 
 ## FAQ
