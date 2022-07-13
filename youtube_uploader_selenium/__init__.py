@@ -30,7 +30,7 @@ class YouTubeUploader:
 		self.thumbnail_path = thumbnail_path
 		self.metadata_dict = load_metadata(metadata_json_path)
 		current_working_dir = str(Path.cwd())
-		self.browser = Firefox(current_working_dir, current_working_dir, None, None, False, False)
+		self.browser = Firefox(current_working_dir, current_working_dir, None, None, False, False, False)
 		self.logger = logging.getLogger(__name__)
 		self.logger.setLevel(logging.DEBUG)
 		self.__validate_inputs()
@@ -200,10 +200,12 @@ class YouTubeUploader:
 		status_container = self.browser.find(By.XPATH,
 											 Constant.STATUS_CONTAINER)
 		while True:
-			in_process = status_container.text.find(Constant.UPLOADED) != -1
-			if in_process:
-				time.sleep(Constant.USER_WAITING_TIME)
+			progress = status_container.get_attribute('value')
+			if progress < 100:
+				self.logger.debug('Upload video progress: {}%'.format(progress))
+				time.sleep(Constant.USER_WAITING_TIME * 5)
 			else:
+				time.sleep(Constant.USER_WAITING_TIME * 3)
 				break
 
 		done_button = self.browser.find(By.ID, Constant.DONE_BUTTON)

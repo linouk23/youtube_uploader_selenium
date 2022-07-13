@@ -7,13 +7,10 @@ class Constant:
     VIDEO_TITLE = 'title'
     VIDEO_DESCRIPTION = 'description'
     VIDEO_TAGS = 'tags'
-    DESCRIPTION_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/' \
-                            'ytcp-uploads-details/div/ytcp-uploads-basics/ytcp-mention-textbox[2]'
     TEXTBOX_ID = 'textbox'
     TEXT_INPUT = 'text-input'
     RADIO_LABEL = 'radioLabel'
-    STATUS_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[2]/' \
-                       'div/div[1]/ytcp-video-upload-progress/span'
+    STATUS_CONTAINER = '//*[@id="slot-wrapper"]/ytcp-video-upload-progress-hover/tp-yt-paper-progress'
     NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
     # Thanks to romka777
@@ -26,7 +23,6 @@ class Constant:
     VIDEO_URL_CONTAINER = "//span[@class='video-url-fadeable style-scope ytcp-video-info']"
     VIDEO_URL_ELEMENT = "//a[@class='style-scope ytcp-video-info']"
     HREF = 'href'
-    UPLOADED = 'Uploading'
     ERROR_CONTAINER = '//*[@id="error-message"]'
     VIDEO_NOT_FOUND_ERROR = 'Could not find video_id'
     DONE_BUTTON = 'done-button'
