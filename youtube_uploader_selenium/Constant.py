@@ -9,7 +9,7 @@ class Constant:
     VIDEO_TAGS = 'tags'
     DESCRIPTION_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/' \
                             'ytcp-uploads-details/div/ytcp-uploads-basics/ytcp-mention-textbox[2]'
-    TEXTBOX = 'textbox'
+    TEXTBOX_ID = 'textbox'
     TEXT_INPUT = 'text-input'
     RADIO_LABEL = 'radioLabel'
     STATUS_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[2]/' \
@@ -17,8 +17,8 @@ class Constant:
     NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
     # Thanks to romka777
-    MORE_BUTTON = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-video-metadata-editor/div/div/ytcp-button/div'
-    TAGS_INPUT_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-video-metadata-editor/div/ytcp-video-metadata-editor-advanced/div[3]/ytcp-form-input-container/div[1]/div[2]/ytcp-free-text-chip-bar/ytcp-chip-bar/div'
+    ADVANCED_BUTTON_ID = 'toggle-button'
+    TAGS_INPUT_CONTAINER_ID = 'chip-bar'
 
     TAGS_INPUT = 'text-input'
     NEXT_BUTTON = 'next-button'
@@ -32,3 +32,14 @@ class Constant:
     DONE_BUTTON = 'done-button'
     INPUT_FILE_VIDEO = "//input[@type='file']"
     INPUT_FILE_THUMBNAIL = "//input[@id='file-loader']"
+
+    # Playlist
+    VIDEO_PLAYLIST = 'playlist'
+    PL_DROPDOWN_CLASS = 'ytcp-video-metadata-playlists'
+    PL_SEARCH_INPUT_ID = 'search-input'
+    PL_ITEMS_CONTAINER_ID = 'items'
+    PL_ITEM_CONTAINER = '//span[text()="{}"]'
+    PL_NEW_BUTTON_CLASS = 'new-playlist-button'
+    PL_CREATE_PLAYLIST_CONTAINER_ID = 'create-playlist-form'
+    PL_CREATE_BUTTON_CLASS = 'create-playlist-button'
+

@@ -75,17 +75,25 @@ class YouTubeUploader:
 			time.sleep(Constant.USER_WAITING_TIME)
 			self.browser.save_cookies()
 
-	def __write_in_field(self, field, string, select_all=False):
+	def __clear_field(self, field):
 		field.click()
-
 		time.sleep(Constant.USER_WAITING_TIME)
+		if self.is_mac:
+			field.send_keys(Keys.COMMAND + 'a')
+		else:
+			field.send_keys(Keys.CONTROL + 'a')
+		time.sleep(Constant.USER_WAITING_TIME)
+		field.send_keys(Keys.BACKSPACE)
+
+	def __write_in_field(self, field, string, select_all=False):
 		if select_all:
-			if self.is_mac:
-				field.send_keys(Keys.COMMAND + 'a')
-			else:
-				field.send_keys(Keys.CONTROL + 'a')
+			self.__clear_field(field)
+		else:
+			field.click()
 			time.sleep(Constant.USER_WAITING_TIME)
+
 		field.send_keys(string)
+
 
 	def __upload(self) -> (bool, Optional[str]):
 		self.browser.get(Constant.YOUTUBE_URL)
@@ -106,7 +114,8 @@ class YouTubeUploader:
 			self.logger.debug(
 				'Attached thumbnail {}'.format(self.thumbnail_path))
 
-		title_field = self.browser.find(By.ID, Constant.TEXTBOX, timeout=15)
+		title_field, description_field = self.browser.find_all(By.ID, Constant.TEXTBOX_ID, timeout=15)
+
 		self.__write_in_field(
 			title_field, self.metadata_dict[Constant.VIDEO_TITLE], select_all=True)
 		self.logger.debug('The video title was set to \"{}\"'.format(
@@ -115,7 +124,6 @@ class YouTubeUploader:
 		video_description = self.metadata_dict[Constant.VIDEO_DESCRIPTION]
 		video_description = video_description.replace("\n", Keys.ENTER);
 		if video_description:
-			description_field = self.browser.find_all(By.ID, Constant.TEXTBOX)[1]
 			self.__write_in_field(description_field, video_description, select_all=True)
 			self.logger.debug('Description filled.')
 
@@ -125,12 +133,46 @@ class YouTubeUploader:
 		self.logger.debug('Selected \"{}\"'.format(
 			Constant.NOT_MADE_FOR_KIDS_LABEL))
 
+		# Playlist
+		playlist = self.metadata_dict[Constant.VIDEO_PLAYLIST]
+		if playlist:
+			self.browser.find(By.CLASS_NAME, Constant.PL_DROPDOWN_CLASS)
+			time.sleep(Constant.USER_WAITING_TIME)
+			search_field = self.browser.find(By.ID, Constant.PL_SEARCH_INPUT_ID)
+			self.__write_in_field(search_field, playlist)
+			time.sleep(Constant.USER_WAITING_TIME)
+			playlist_items_container = self.browser.find(By.ID, Constant.PL_ITEMS_CONTAINER_ID)
+			# Try to find playlist
+			self.logger.debug('Playlist xpath: "{}".'.format(Constant.PL_ITEM_CONTAINER.format(playlist)))
+			playlist_item = self.browser.find(By.XPATH, Constant.PL_ITEM_CONTAINER.format(playlist), playlist_items_container)
+			if playlist_item: 
+				self.logger.debug('Playlist found.')
+				playlist_item.click()
+				time.sleep(Constant.USER_WAITING_TIME)
+			else:
+				self.logger.debug('Playlist not found. Creating')
+				self.__clear_field(search_field, playlist)
+				time.sleep(Constant.USER_WAITING_TIME)
+
+				new_playlist_button = self.browser.find(By.CLASS_NAME, Constant.PL_NEW_BUTTON_CLASS)
+				new_playlist_button.click()
+
+				create_playlist_container = self.browser.find(By.ID, Constant.PL_CREATE_PLAYLIST_CONTAINER_ID)
+				playlist_title_textbox = self.browser.find(By.XPATH, "//textarea", create_playlist_container)
+				self.__write_in_field(playlist_title_textbox, playlist)
+
+				time.sleep(Constant.USER_WAITING_TIME)
+				create_playlist_button = self.browser.find(By.CLASS_NAME, Constant.PL_CREATE_BUTTON_CLASS)
+				create_playlist_button.click()
+				time.sleep(Constant.USER_WAITING_TIME)
+
+
 		# Advanced options
-		self.browser.find(By.XPATH, Constant.MORE_BUTTON).click()
+		self.browser.find(By.ID, Constant.ADVANCED_BUTTON_ID).click()
 		self.logger.debug('Clicked MORE OPTIONS')
 
 		tags_container = self.browser.find(By.XPATH,
-										   Constant.TAGS_INPUT_CONTAINER)
+										   Constant.TAGS_INPUT_CONTAINER_ID)
 		tags_field = self.browser.find(
 			By.ID, Constant.TAGS_INPUT, element=tags_container)
 		self.__write_in_field(tags_field, ','.join(
