@@ -172,14 +172,13 @@ class YouTubeUploader:
 		self.logger.debug('Clicked MORE OPTIONS')
 		time.sleep(Constant.USER_WAITING_TIME)
 
-		tags_container = self.browser.find_all(By.ID,
-											Constant.TAGS_INPUT_CONTAINER_ID)[1]
-		tags_field = self.browser.find(
-			By.ID, Constant.TAGS_INPUT, element=tags_container)
-		self.__write_in_field(tags_field, ','.join(
-			self.metadata_dict[Constant.VIDEO_TAGS]))
-		self.logger.debug(
-			'The tags were set to \"{}\"'.format(self.metadata_dict[Constant.VIDEO_TAGS]))
+		# Tags
+		tags = self.metadata_dict[Constant.VIDEO_TAGS]
+		if tags: 
+			tags_container = self.browser.find_all(By.ID,Constant.TAGS_INPUT_CONTAINER_ID)[1]
+			tags_field = self.browser.find(By.ID, Constant.TAGS_INPUT, element=tags_container)
+			self.__write_in_field(tags_field, ','.join(tags))
+			self.logger.debug('The tags were set to \"{}\"'.format(tags))
 
 
 		self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
