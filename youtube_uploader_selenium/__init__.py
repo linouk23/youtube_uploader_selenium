@@ -170,9 +170,10 @@ class YouTubeUploader:
 		# Advanced options
 		self.browser.find(By.ID, Constant.ADVANCED_BUTTON_ID).click()
 		self.logger.debug('Clicked MORE OPTIONS')
+		time.sleep(Constant.USER_WAITING_TIME)
 
-		tags_container = self.browser.find(By.XPATH,
-										   Constant.TAGS_INPUT_CONTAINER_ID)
+		tags_container = self.browser.find_all(By.ID,
+											Constant.TAGS_INPUT_CONTAINER_ID)[1]
 		tags_field = self.browser.find(
 			By.ID, Constant.TAGS_INPUT, element=tags_container)
 		self.__write_in_field(tags_field, ','.join(
