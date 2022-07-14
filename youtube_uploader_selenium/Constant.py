@@ -10,7 +10,7 @@ class Constant:
     TEXTBOX_ID = 'textbox'
     TEXT_INPUT = 'text-input'
     RADIO_LABEL = 'radioLabel'
-    STATUS_CONTAINER = '//*[@id="slot-wrapper"]/ytcp-video-upload-progress-hover/tp-yt-paper-progress'
+    STATUS_CONTAINER = '//ytcp-uploads-dialog//ytcp-video-upload-progress-hover[@progress-type="UPLOADING"]/tp-yt-paper-progress'
     NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
     # Thanks to romka777

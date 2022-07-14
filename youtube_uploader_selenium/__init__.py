@@ -32,7 +32,7 @@ class YouTubeUploader:
 		self.thumbnail_path = thumbnail_path
 		self.metadata_dict = load_metadata(metadata_json_path)
 		current_working_dir = str(Path.cwd())
-		self.browser = Firefox(pickle_cookies=True)
+		self.browser = Firefox(pickle_cookies = True, full_screen = False)
 		self.logger = logging.getLogger(__name__)
 		self.logger.setLevel(logging.DEBUG)
 		self.__validate_inputs()
