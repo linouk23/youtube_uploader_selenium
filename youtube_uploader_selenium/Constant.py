@@ -6,6 +6,7 @@ class Constant:
     USER_WAITING_TIME = 1
     VIDEO_TITLE = 'title'
     VIDEO_DESCRIPTION = 'description'
+    VIDEO_EDIT = 'edit'
     VIDEO_TAGS = 'tags'
     TEXTBOX_ID = 'textbox'
     TEXT_INPUT = 'text-input'
@@ -13,9 +14,9 @@ class Constant:
     STATUS_CONTAINER = '//ytcp-uploads-dialog//ytcp-video-upload-progress-hover[@progress-type="UPLOADING"]/tp-yt-paper-progress'
     NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
-    # Thanks to romka777
+    UPLOAD_DIALOG = '//ytcp-uploads-dialog'
     ADVANCED_BUTTON_ID = 'toggle-button'
-    TAGS_INPUT_CONTAINER_ID = 'chip-bar'
+    TAGS_CONTAINER_ID = 'tags-container'
 
     TAGS_INPUT = 'text-input'
     NEXT_BUTTON = 'next-button'
@@ -30,7 +31,7 @@ class Constant:
     INPUT_FILE_THUMBNAIL = "//input[@id='file-loader']"
 
     # Playlist
-    VIDEO_PLAYLIST = 'playlist'
+    VIDEO_PLAYLIST = 'playlist_title'
     PL_DROPDOWN_CLASS = 'ytcp-video-metadata-playlists'
     PL_SEARCH_INPUT_ID = 'search-input'
     PL_ITEMS_CONTAINER_ID = 'items'
@@ -38,4 +39,5 @@ class Constant:
     PL_NEW_BUTTON_CLASS = 'new-playlist-button'
     PL_CREATE_PLAYLIST_CONTAINER_ID = 'create-playlist-form'
     PL_CREATE_BUTTON_CLASS = 'create-playlist-button'
+    PL_DONE_BUTTON_CLASS = 'done-button'
 
