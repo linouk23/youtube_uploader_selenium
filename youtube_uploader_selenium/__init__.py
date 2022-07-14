@@ -2,7 +2,9 @@
 	to extract its title, description etc."""
 
 from typing import DefaultDict, Optional
-from selenium_firefox.firefox import Firefox, By, Keys
+from selenium_firefox.firefox import Firefox
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from collections import defaultdict
 import json
 import time
@@ -30,11 +32,11 @@ class YouTubeUploader:
 		self.thumbnail_path = thumbnail_path
 		self.metadata_dict = load_metadata(metadata_json_path)
 		current_working_dir = str(Path.cwd())
-		self.browser = Firefox(current_working_dir, current_working_dir, None, None, False, False, False)
+		self.browser = Firefox(pickle_cookies=True)
 		self.logger = logging.getLogger(__name__)
 		self.logger.setLevel(logging.DEBUG)
 		self.__validate_inputs()
-		
+
 		self.is_mac = False
 		if not any(os_name in platform.platform() for os_name in ["Windows", "Linux"]):
 			self.is_mac = True
@@ -201,7 +203,7 @@ class YouTubeUploader:
 											 Constant.STATUS_CONTAINER)
 		while True:
 			progress = status_container.get_attribute('value')
-			if progress < 100:
+			if int(progress) < 100:
 				self.logger.debug('Upload video progress: {}%'.format(progress))
 				time.sleep(Constant.USER_WAITING_TIME * 5)
 			else:
