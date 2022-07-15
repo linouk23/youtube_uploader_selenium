@@ -192,7 +192,7 @@ class YouTubeUploader:
 		# Tags
 		tags = self.metadata_dict[Constant.VIDEO_TAGS]
 		if tags: 
-			tags_container = self.browser.find_all(By.ID, Constant.TAGS_CONTAINER_ID)
+			tags_container = self.browser.find(By.ID, Constant.TAGS_CONTAINER_ID)
 			tags_field = self.browser.find(By.ID, Constant.TAGS_INPUT, tags_container)
 			self.__write_in_field(tags_field, ','.join(tags))
 			self.logger.debug('The tags were set to \"{}\"'.format(tags))
