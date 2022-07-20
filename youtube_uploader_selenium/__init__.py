@@ -221,7 +221,6 @@ class YouTubeUploader:
 				self.logger.debug('Upload video progress: {}%'.format(uploading_progress))
 				time.sleep(Constant.USER_WAITING_TIME * 5)
 			else:
-				self.logger.debug('Processing started: {}%'.format(processing_progress))
 				time.sleep(Constant.USER_WAITING_TIME * 3)
 				break
 
