@@ -115,7 +115,13 @@ class YouTubeUploader:
 			self.browser.find(By.XPATH, Constant.INPUT_FILE_VIDEO).send_keys(
 				absolute_video_path)
 			self.logger.debug('Attached video {}'.format(self.video_path))
-			time.sleep(Constant.USER_WAITING_TIME * 3)
+
+			# Find status container
+			uploading_status_container = None
+			while uploading_status_container is None:
+				time.sleep(Constant.USER_WAITING_TIME)
+				uploading_status_container = self.browser.find(By.XPATH, Constant.UPLOADING_STATUS_CONTAINER)
+
 
 		if self.thumbnail_path is not None:
 			absolute_thumbnail_path = str(Path.cwd() / self.thumbnail_path)
@@ -213,31 +219,15 @@ class YouTubeUploader:
 
 		video_id = self.__get_video_id()
 
+		# Check status container and upload progress
 		uploading_status_container = self.browser.find(By.XPATH, Constant.UPLOADING_STATUS_CONTAINER)
-		while True:
+		while uploading_status_container is not None:
 			uploading_progress = uploading_status_container.get_attribute('value')
+			self.logger.debug('Upload video progress: {}%'.format(uploading_progress))
+			time.sleep(Constant.USER_WAITING_TIME * 5)
+			uploading_status_container = self.browser.find(By.XPATH, Constant.UPLOADING_STATUS_CONTAINER)
 
-			if int(uploading_progress) < 100:
-				self.logger.debug('Upload video progress: {}%'.format(uploading_progress))
-				time.sleep(Constant.USER_WAITING_TIME * 5)
-			else:
-				time.sleep(Constant.USER_WAITING_TIME * 3)
-				break
-
-		while True:
-			processing_status_container = self.browser.find(By.XPATH, Constant.PROCESSING_STATUS_CONTAINER)
-			if processing_status_container:
-				processing_progress = processing_status_container.get_attribute('value')
-				if int(processing_progress) > 1:
-					self.logger.debug('Processing started: {}%'.format(processing_progress))
-					break
-				else:
-					self.logger.debug('Processing not started.')
-					time.sleep(Constant.USER_WAITING_TIME * 3)
-			else:
-				self.logger.debug('Processing container not found.')
-				time.sleep(Constant.USER_WAITING_TIME * 3)
-
+		self.logger.debug('Upload container gone.')
 
 		done_button = self.browser.find(By.ID, Constant.DONE_BUTTON)
 
