@@ -213,13 +213,20 @@ class YouTubeUploader:
 
 		video_id = self.__get_video_id()
 
-		status_container = self.browser.find(By.XPATH, Constant.STATUS_CONTAINER)
+		uploading_status_container = self.browser.find(By.XPATH, Constant.UPLOADING_STATUS_CONTAINER)
+		processing_status_container = self.browser.find(By.XPATH, Constant.PROCESSING_STATUS_CONTAINER)
 		while True:
-			progress = status_container.get_attribute('value')
-			if int(progress) < 100:
-				self.logger.debug('Upload video progress: {}%'.format(progress))
+			uploading_progress = uploading_status_container.get_attribute('value')
+			processing_progress = processing_status_container.get_attribute('value')
+			if int(uploading_progress) < 100:
+				self.logger.debug('Upload video progress: {}%'.format(uploading_progress))
 				time.sleep(Constant.USER_WAITING_TIME * 5)
+			elif processing_progress < 1:
+				self.logger.debug('Upload video progress: {}%'.format(uploading_progress))
+				self.logger.debug('Processing not started.')
+				time.sleep(Constant.USER_WAITING_TIME * 3)
 			else:
+				self.logger.debug('Processing started: {}%'.format(processing_progress))
 				time.sleep(Constant.USER_WAITING_TIME * 3)
 				break
 
