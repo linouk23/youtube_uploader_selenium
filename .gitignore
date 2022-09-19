@@ -69,3 +69,10 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+# Mac
+/.DS_Store
+
+# Project temp data
+/youtube_uploader_selenium/__pycache__/
+/cookies/
