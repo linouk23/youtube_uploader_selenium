@@ -41,3 +41,9 @@ class Constant:
     PL_CREATE_BUTTON_CLASS = 'create-playlist-button'
     PL_DONE_BUTTON_CLASS = 'done-button'
 
+    #Schedule
+    VIDEO_SCHEDULE = 'schedule'
+    SCHEDULE_CONTAINER_ID = 'schedule-radio-button'
+    SCHEDULE_DATE_ID = 'datepicker-trigger'
+    SCHEDULE_DATE_TEXTBOX = '/html/body/ytcp-date-picker/tp-yt-paper-dialog/div/form/tp-yt-paper-input/tp-yt-paper-input-container/div[2]/div/iron-input/input'
+    SCHEDULE_TIME = "/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-uploads-review/div[2]/div[1]/ytcp-video-visibility-select/div[3]/ytcp-visibility-scheduler/div[1]/ytcp-datetime-picker/div/div[2]/form/ytcp-form-input-container/div[1]/div/tp-yt-paper-input/tp-yt-paper-input-container/div[2]/div/iron-input/input"

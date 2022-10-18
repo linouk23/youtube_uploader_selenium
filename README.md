@@ -52,9 +52,11 @@ An example JSON file would be:
 {
   "title": "Best Of James Harden | 2019-20 NBA Season",
   "description": "Check out the best of James Harden's 2019-20 season so far!",
-  "tags": ["James", "Harden", "NBA"]
+  "tags": ["James", "Harden", "NBA"],
+  "schedule": "06/05/2013, 23:05"
 }
 ```
+For your convenience, the format string for the schedule is `%m/%d/%Y, %H:%M`
 
 ## Dependencies
 * geckodriver
