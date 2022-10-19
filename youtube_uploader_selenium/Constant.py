@@ -11,7 +11,7 @@ class Constant:
     TEXTBOX_ID = 'textbox'
     TEXT_INPUT = 'text-input'
     RADIO_LABEL = 'radioLabel'
-    UPLOADING_STATUS_CONTAINER = '//ytcp-uploads-dialog//ytcp-video-upload-progress-hover[@progress-type="UPLOADING"]/tp-yt-paper-progress'
+    UPLOADING_STATUS_CONTAINER = '/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[2]/div/div[1]/ytcp-video-upload-progress[@uploading=""]'
     NOT_MADE_FOR_KIDS_LABEL = 'VIDEO_MADE_FOR_KIDS_NOT_MFK'
 
     UPLOAD_DIALOG = '//ytcp-uploads-dialog'
